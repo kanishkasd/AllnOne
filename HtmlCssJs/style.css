@@ -63,7 +63,7 @@ body {
   background-image: linear-gradient(var(--yellow), var(--orange));
 }
 
-#cart-button {
+#cart-btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -102,7 +102,7 @@ body {
 }
 
 @media (min-width: 768px) {
-  #dessert-cart-container {
+  #dessert-card-container {
     flex-direction: row;
   }
 
