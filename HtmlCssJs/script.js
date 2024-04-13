@@ -4,6 +4,7 @@ const showHideCart = document.getElementById("show-hide-cart");
 const clearCart = document.getElementById("clear-cart");
 const totalItems = document.getElementById("total-items");
 const subTotal = document.getElementById("sub-total");
+const taxes = document.getElementById("taxes");
 const total = document.getElementById("total");
 const cardContainer = document.getElementById("dessert-card-container");
 const productContainer = document.getElementById("products-container");
@@ -85,7 +86,7 @@ const products = [
 ];
 
 products.forEach(({ name, id, price, category }) => {
-  cardContainer.innerHTML = `
+  cardContainer.innerHTML += `
         <div class="dessert-card">
             <h2>${name}</h2>
             <p class="dessert-price">$${price}</p>
@@ -94,7 +95,73 @@ products.forEach(({ name, id, price, category }) => {
             <button 
             id="${id}"
             class="btn add-to-cart-btn">Add to cart</button>
-
         </div>
         `;
 });
+
+class ShoppingCart {
+  constructor() {
+    this.items = [];
+    this.total = 0;
+    this.taxRate = 10.5;
+  }
+
+  addItem(id, product) {
+    const product = products.find((item) => item.id === id);
+    const { name, price } = product;
+    this.items.push(product);
+
+    const totalCountPerProduct = {};
+    this.items.forEach((dessert) => {
+      totalCountPerProduct[dessert.id] =
+        (totalCountPerProduct[dessert.id] || 0) + 1;
+    });
+
+    const currentProductCount = totalCountPerProduct[product.id];
+
+    const currentProductCountSpan = document.getElementById(
+      `product-count-for-id${id}`
+    );
+
+    currentProductCount > 1
+      ? (currentProductCountSpan.textContent = `${currentProductCount}x`)
+      : (productContainer.innerHTML += `<div id="dessert${id}" class="product">
+        <p><span class="product-count" id="product-count-for-id${id}></span>  
+        </p>
+        <p>${price}</p>
+      </div>`);
+  }
+
+  getCounts() {
+    return this.items.length;
+  }
+
+  clearCart() {
+    if (!this.items.length) {
+      alert("Your cart is already empty!!!");
+      return;
+    }
+
+    const isCartCleared = confirm(
+      "Are you sure you want to clear all your cart items?"
+    );
+
+    if (isCartCleared) {
+      this.items = [];
+      this.total = 0;
+      productContainer.innerHTML = "";
+      totalItems.textContent = 0;
+      subTotal.textContent = 0;
+      taxes.textContent = 0;
+      total.textContent = 0;
+    }
+  }
+
+  calculateTaxes(amount) {
+    return parseFloat(((this.taxRate * amount) / 100).toFixed(2));
+  }
+
+  calculateTotal() {
+    const subTotal = this.items.reduce((total, item) => total + item.price, 0);
+  }
+}
