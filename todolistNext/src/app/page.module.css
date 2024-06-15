@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  margin-top: 50px;
+  font-size: 50px;
+  background: linear-gradient(to bottom, #124366, #ebe9e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dot {
+  font-size: 72px;
+}
