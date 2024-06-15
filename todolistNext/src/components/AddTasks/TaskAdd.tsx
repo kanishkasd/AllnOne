@@ -9,10 +9,16 @@ const roboto = Roboto({
 
 const TaskAdd = () => {
   return (
-    <form className={styles.form}>
-      <input type="text" placeholder="Type your task here...." />
-      <button className={styles.button}>Add</button>
-    </form>
+    <div className={styles.container}>
+      <form className={styles.form}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Type your task here...."
+        />
+        <button className={styles.button}>ADD</button>
+      </form>
+    </div>
   );
 };
 
