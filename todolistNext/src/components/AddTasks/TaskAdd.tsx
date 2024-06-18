@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
 import { Roboto } from "next/font/google";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
 const TaskAdd = () => {
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const handleClick = () => {
+    if (task.trim() !== "") {
+      setTasks([...tasks]);
+    }
+  };
   return (
     <div className={styles.container}>
       <form className={styles.form}>
@@ -15,8 +17,11 @@ const TaskAdd = () => {
           className={styles.input}
           type="text"
           placeholder="Type your task here...."
+          onChange={(e) => setTask(e.target.value)}
         />
-        <button className={styles.button}>ADD</button>
+        <button onClick={(e) => handleClick} className={styles.button}>
+          ADD
+        </button>
       </form>
     </div>
   );
