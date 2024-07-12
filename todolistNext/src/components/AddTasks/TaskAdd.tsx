@@ -1,12 +1,21 @@
-"use client";
 import React from "react";
+import styles from "./page.module.css";
 
 const TaskAdd = () => {
   return (
-    <form>
-      <label htmlFor="addTasks">Add your tasks here </label>
-      <input type="text" id="addTasks" placeholder="Add your task" />
-    </form>
+    <div className={styles.container}>
+      <form>
+        <label htmlFor="addTasks" className={styles.heading}>
+          What you want to do today ?{" "}
+        </label>
+        <input
+          type="text"
+          id="addTasks"
+          placeholder="Add your task"
+          className={styles.input}
+        />
+      </form>
+    </div>
   );
 };
 
