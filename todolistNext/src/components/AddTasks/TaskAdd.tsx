@@ -14,6 +14,7 @@ const TaskAdd = () => {
           placeholder="Add your task"
           className={styles.input}
         />
+        <button className={styles.button}>ENTER</button>
       </form>
     </div>
   );
