@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import styles from "./page.module.css";
 
 const TaskAdd = () => {
+  const handleSubmit = () => {};
   return (
     <div className={styles.container}>
       <form>
@@ -14,7 +16,9 @@ const TaskAdd = () => {
           placeholder="Add your task"
           className={styles.input}
         />
-        <button className={styles.button}>ENTER</button>
+        <button className={styles.button} onClick={handleSubmit}>
+          ENTER
+        </button>
       </form>
     </div>
   );
